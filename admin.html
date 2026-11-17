@@ -1,0 +1,1111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impact Realty | Admin Dashboard</title>
+<style>
+:root {
+  --bg:#090a09;
+  --panel:#151610;
+  --gold:#c9a45e;
+  --gold-light:#e7ca8a;
+  --text:#eee9de;
+  --muted:#aaa69b;
+  --line:#39362b;
+  --red:#e39b91;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+}
+button,input,select,textarea { font:inherit; }
+button { cursor:pointer; }
+.hidden { display:none!important; }
+.gold { color:var(--gold-light); }
+.top {
+  height:70px;
+  padding:0 4%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  background:#090a09;
+  z-index:5;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+.logo {
+  width:39px;
+  height:39px;
+  border:1px solid var(--gold);
+  display:grid;
+  place-items:center;
+  color:var(--gold-light);
+  font:italic 21px Georgia;
+}
+.brand b { font-size:12px; letter-spacing:2px; }
+.brand small {
+  display:block;
+  font-size:8px;
+  color:var(--muted);
+  letter-spacing:1.5px;
+  margin-top:4px;
+}
+.btn {
+  background:var(--gold);
+  border:1px solid var(--gold);
+  color:#17140d;
+  padding:10px 15px;
+  font-size:11px;
+  font-weight:700;
+}
+.btn.ghost {
+  background:transparent;
+  color:var(--gold-light);
+}
+.btn.danger {
+  background:transparent;
+  border-color:#78433e;
+  color:var(--red);
+}
+.actions { display:flex; gap:7px; flex-wrap:wrap; }
+.login {
+  min-height:calc(100vh - 70px);
+  display:grid;
+  place-items:center;
+  padding:22px;
+}
+.login-box {
+  width:min(430px,100%);
+  padding:30px;
+  background:var(--panel);
+  border:1px solid #5b4a2d;
+}
+.login-box h1,h1,h2 {
+  font-family:Georgia,serif;
+  font-weight:500;
+}
+.login-box h1 { font-size:34px; }
+.login-box p {
+  font-size:12px;
+  line-height:1.7;
+  color:var(--muted);
+}
+.eyebrow {
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--gold);
+  font-weight:bold;
+}
+.field {
+  display:grid;
+  gap:7px;
+  margin:13px 0;
+}
+.field label {
+  font-size:10px;
+  color:var(--gold-light);
+  letter-spacing:.8px;
+}
+.field input,.field select,.field textarea,.control {
+  width:100%;
+  background:#0a0b09;
+  color:var(--text);
+  border:1px solid var(--line);
+  padding:11px;
+  outline:none;
+  font-size:12px;
+}
+.field input:focus,.field select:focus,
+.field textarea:focus,.control:focus {
+  border-color:var(--gold);
+}
+.login-box .btn { width:100%; margin-top:7px; }
+.layout {
+  display:grid;
+  grid-template-columns:210px minmax(0,1fr);
+  min-height:calc(100vh - 70px);
+}
+.sidebar {
+  padding:24px 14px;
+  background:#0d0e0c;
+  border-right:1px solid var(--line);
+}
+.nav {
+  display:block;
+  width:100%;
+  padding:13px 12px;
+  margin:5px 0;
+  text-align:left;
+  background:transparent;
+  color:#d1cbbb;
+  border:1px solid transparent;
+  font-size:12px;
+}
+.nav.active,.nav:hover {
+  background:#1d1d16;
+  border-color:#5b4a2d;
+  color:var(--gold-light);
+}
+main {
+  padding:28px 4%;
+  max-width:1450px;
+  width:100%;
+  margin:auto;
+}
+.head {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:22px;
+}
+.head h1 { font-size:36px; margin:7px 0; }
+.head p { font-size:12px; color:var(--muted); margin:0; }
+.notice {
+  padding:12px 14px;
+  border:1px solid #5b4a2d;
+  background:#19180f;
+  color:#ddc99c;
+  font-size:11px;
+  line-height:1.6;
+  margin-bottom:18px;
+}
+.stats {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:18px;
+}
+.stat,.panel {
+  background:var(--panel);
+  border:1px solid var(--line);
+}
+.stat { padding:16px; }
+.stat small {
+  font-size:9px;
+  color:var(--muted);
+  letter-spacing:1px;
+}
+.stat strong {
+  display:block;
+  font:29px Georgia;
+  color:var(--gold-light);
+  margin-top:8px;
+}
+.panel { padding:17px; margin-bottom:16px; }
+.panel-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:13px;
+}
+.panel-head h2 { font-size:22px; margin:0; }
+.toolbar {
+  display:flex;
+  gap:9px;
+  margin-bottom:13px;
+}
+.toolbar>* { flex:1; min-width:0; }
+.table-wrap { overflow-x:auto; }
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:660px;
+}
+th,td {
+  text-align:left;
+  padding:11px 9px;
+  border-bottom:1px solid #302f27;
+  font-size:11px;
+  vertical-align:middle;
+}
+th {
+  font-size:9px;
+  color:var(--gold-light);
+  letter-spacing:1px;
+}
+td { color:#d7d1c4; }
+td strong { color:#f2eddf; }
+.sub {
+  display:block;
+  color:#928d80;
+  font-size:10px;
+  margin-top:4px;
+}
+.pill {
+  display:inline-block;
+  border:1px solid #66532e;
+  color:var(--gold-light);
+  padding:4px 7px;
+  font-size:9px;
+}
+.mini {
+  background:transparent;
+  border:1px solid #65512e;
+  color:var(--gold-light);
+  padding:7px 9px;
+  font-size:10px;
+}
+.mini.delete {
+  border-color:#78433e;
+  color:var(--red);
+}
+.empty {
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+  font-size:12px;
+}
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000c;
+  z-index:20;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+.modal.show { display:flex; }
+.modal-box {
+  width:min(680px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:var(--panel);
+  border:1px solid #705a32;
+  padding:21px;
+}
+.modal-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.modal-head h2 { margin:0; }
+.close {
+  background:none;
+  border:0;
+  color:var(--gold-light);
+  font-size:25px;
+}
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 13px;
+}
+.wide { grid-column:1/-1; }
+.check {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:var(--muted);
+  font-size:11px;
+  margin:10px 0;
+}
+.toast {
+  display:none;
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#eee5d2;
+  color:#18150e;
+  padding:12px 17px;
+  font-size:12px;
+  z-index:50;
+  max-width:90%;
+}
+.toast.show { display:block; }
+.status-message {
+  font-size:12px;
+  min-height:16px;
+}
+.foot {
+  font-size:10px;
+  color:#777367;
+  line-height:1.6;
+  margin-top:18px;
+}
+@media(max-width:800px) {
+  .layout { grid-template-columns:1fr; }
+  .sidebar {
+    display:flex;
+    overflow:auto;
+    padding:8px;
+    position:sticky;
+    top:70px;
+    z-index:4;
+  }
+  .nav {
+    white-space:nowrap;
+    width:auto;
+    margin:0 3px;
+    padding:10px;
+  }
+  .stats { grid-template-columns:repeat(2,1fr); }
+  main { padding:22px 4%; }
+}
+@media(max-width:540px) {
+  .top { height:64px; }
+  .layout { min-height:calc(100vh - 64px); }
+  .sidebar { top:64px; }
+  .head { align-items:flex-start; flex-direction:column; }
+  .head h1 { font-size:31px; }
+  .form-grid { grid-template-columns:1fr; }
+  .wide { grid-column:auto; }
+  .panel { padding:12px; }
+  .stats { gap:8px; }
+  .stat { padding:12px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="top">
+  <div class="brand">
+    <span class="logo">IR</span>
+    <span>
+      <b>IMPACT <span class="gold">REALTY</span></b>
+      <small>ADMIN DASHBOARD</small>
+    </span>
+  </div>
+  <div class="actions">
+    <a class="btn ghost" href="index.html" style="text-decoration:none">View website ↗</a>
+    <button class="btn hidden" id="logoutBtn">Log out</button>
+  </div>
+</header>
+
+<section class="login" id="loginView">
+  <div class="login-box">
+    <div class="eyebrow">OWNER ACCESS · SECURE SIGN IN</div>
+    <h1>Welcome <span class="gold">back.</span></h1>
+    <p>
+      Sign in using the ADMIN_EMAIL and ADMIN_PASSWORD
+      configured in your Render environment settings.
+    </p>
+
+    <form id="loginForm">
+      <div class="field">
+        <label for="email">ADMIN EMAIL</label>
+        <input id="email" type="email" required
+          autocomplete="username" placeholder="Your admin email">
+      </div>
+
+      <div class="field">
+        <label for="password">ADMIN PASSWORD</label>
+        <input id="password" type="password" required
+          autocomplete="current-password" placeholder="Your admin password">
+      </div>
+
+      <button class="btn" id="loginBtn">Sign in to dashboard ↗</button>
+      <p class="status-message" id="loginMessage"></p>
+    </form>
+
+    <p class="foot">
+      Your login token stays in this browser session.
+      Never share your admin password or database connection string.
+    </p>
+  </div>
+</section>
+
+<div class="layout hidden" id="appView">
+
+  <aside class="sidebar">
+    <button class="nav active" data-page="overview">◈ &nbsp; Overview</button>
+    <button class="nav" data-page="properties">⌂ &nbsp; Properties</button>
+    <button class="nav" data-page="enquiries">✉ &nbsp; Enquiries</button>
+  </aside>
+
+  <main>
+
+    <section id="overviewPage">
+      <div class="head">
+        <div>
+          <div class="eyebrow">OWNER CONTROL CENTRE</div>
+          <h1>Dashboard</h1>
+          <p>Manage your listings and customer enquiries.</p>
+        </div>
+        <button class="btn" onclick="openAddProperty()">＋ Add property</button>
+      </div>
+
+      <div class="notice">
+        Live connection to your Impact Realty backend.
+        Listings added here are saved in MongoDB and loaded by your website.
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <small>TOTAL PROPERTIES</small>
+          <strong id="totalProperties">—</strong>
+        </div>
+        <div class="stat">
+          <small>AVAILABLE / READY</small>
+          <strong id="availableProperties">—</strong>
+        </div>
+        <div class="stat">
+          <small>TOTAL ENQUIRIES</small>
+          <strong id="totalEnquiries">—</strong>
+        </div>
+        <div class="stat">
+          <small>NEW ENQUIRIES</small>
+          <strong id="newEnquiries">—</strong>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Latest enquiries</h2>
+          <button class="mini" onclick="showPage('enquiries')">View all ↗</button>
+        </div>
+        <div id="recentEnquiries" class="empty">Loading…</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Latest properties</h2>
+          <button class="mini" onclick="showPage('properties')">Manage listings ↗</button>
+        </div>
+        <div id="recentProperties" class="empty">Loading…</div>
+      </div>
+    </section>
+
+    <section id="propertiesPage" class="hidden">
+      <div class="head">
+        <div>
+          <div class="eyebrow">PROPERTY INVENTORY</div>
+          <h1>Properties</h1>
+          <p>Add, edit and remove live listings.</p>
+        </div>
+        <button class="btn" onclick="openAddProperty()">＋ Add property</button>
+      </div>
+
+      <div class="panel">
+        <div class="toolbar">
+          <input class="control" id="propertySearch"
+            placeholder="Search title or location…">
+          <select class="control" id="propertyFilter">
+            <option value="">All statuses</option>
+            <option>Available</option>
+            <option>Ready to Move</option>
+            <option>Under Construction</option>
+            <option>Sold</option>
+          </select>
+        </div>
+        <div id="propertyTable" class="table-wrap">
+          <div class="empty">Loading…</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="enquiriesPage" class="hidden">
+      <div class="head">
+        <div>
+          <div class="eyebrow">CUSTOMER RELATIONSHIPS</div>
+          <h1>Enquiries</h1>
+          <p>Review customer requests and track their progress.</p>
+        </div>
+        <button class="btn ghost" onclick="loadData()">↻ Refresh</button>
+      </div>
+
+      <div class="panel">
+        <div class="toolbar">
+          <input class="control" id="enquirySearch"
+            placeholder="Search name, phone or message…">
+          <select class="control" id="enquiryFilter">
+            <option value="">All statuses</option>
+            <option>New</option>
+            <option>Contacted</option>
+            <option>Site Visit Scheduled</option>
+            <option>Closed</option>
+          </select>
+        </div>
+        <div id="enquiryTable" class="table-wrap">
+          <div class="empty">Loading…</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot">Impact Realty · Your Property. Our Impact.</div>
+  </main>
+</div>
+
+<div class="modal" id="propertyModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="modalTitle">Add property</h2>
+      <button class="close" onclick="closePropertyModal()">×</button>
+    </div>
+
+    <form id="propertyForm">
+      <input type="hidden" id="propertyId">
+
+      <div class="form-grid">
+        <div class="field wide">
+          <label for="pTitle">PROPERTY TITLE *</label>
+          <input id="pTitle" maxlength="120" required
+            placeholder="e.g. Spacious 2 BHK Apartment">
+        </div>
+
+        <div class="field">
+          <label for="pLocation">LOCATION *</label>
+          <select id="pLocation" required>
+            <option value="">Choose location</option>
+            <option>Badlapur</option>
+            <option>Ambernath</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="pType">PROPERTY TYPE *</label>
+          <select id="pType">
+            <option>Apartment</option>
+            <option>Commercial</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="pStatus">STATUS *</label>
+          <select id="pStatus">
+            <option>Available</option>
+            <option>Ready to Move</option>
+            <option>Under Construction</option>
+            <option>Sold</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="pPrice">PRICE IN RUPEES *</label>
+          <input id="pPrice" type="number" min="1" step="1"
+            required placeholder="4500000">
+        </div>
+
+        <div class="field">
+          <label for="pPriceText">DISPLAY PRICE</label>
+          <input id="pPriceText" maxlength="60" placeholder="₹45 lakh">
+        </div>
+
+        <div class="field">
+          <label for="pBhk">BHK / UNIT</label>
+          <input id="pBhk" maxlength="30" placeholder="2 BHK">
+        </div>
+
+        <div class="field">
+          <label for="pArea">AREA</label>
+          <input id="pArea" maxlength="40" placeholder="780 sq. ft.">
+        </div>
+
+        <div class="field wide">
+          <label for="pImage">PROPERTY IMAGE URL</label>
+          <input id="pImage" type="url" placeholder="https://…">
+        </div>
+
+        <div class="field wide">
+          <label for="pDescription">DESCRIPTION</label>
+          <textarea id="pDescription" rows="3" maxlength="1500"
+            placeholder="Property details…"></textarea>
+        </div>
+      </div>
+
+      <label class="check">
+        <input type="checkbox" id="pFeatured">
+        Mark as featured listing
+      </label>
+
+      <p id="propertyMessage" class="status-message"></p>
+
+      <div class="actions">
+        <button class="btn" id="savePropertyBtn">Save property</button>
+        <button class="btn ghost" type="button"
+          onclick="closePropertyModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API_BASE = "https://impact-realty-api.onrender.com";
+
+const $ = id => document.getElementById(id);
+
+let adminToken = sessionStorage.getItem("impact_realty_admin_token") || "";
+let properties = [];
+let enquiries = [];
+
+function esc(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
+}
+
+function money(value) {
+  return Number.isFinite(Number(value))
+    ? "₹" + Number(value).toLocaleString("en-IN")
+    : "—";
+}
+
+function dateFmt(value) {
+  if (!value) return "—";
+  const date = new Date(value);
+  return Number.isNaN(date.getTime())
+    ? "—"
+    : date.toLocaleString("en-IN", {
+        dateStyle:"medium",
+        timeStyle:"short"
+      });
+}
+
+function notify(message) {
+  $("toast").textContent = message;
+  $("toast").classList.add("show");
+  clearTimeout(notify.timer);
+  notify.timer = setTimeout(
+    () => $("toast").classList.remove("show"),
+    3000
+  );
+}
+
+async function request(path, options = {}) {
+  const headers = {...(options.headers || {})};
+
+  if (adminToken) {
+    headers.Authorization = "Bearer " + adminToken;
+  }
+
+  if (options.body) {
+    headers["Content-Type"] = "application/json";
+  }
+
+  let response;
+
+  try {
+    response = await fetch(API_BASE + path, {
+      ...options,
+      headers
+    });
+  } catch (error) {
+    throw new Error(
+      "Cannot reach the server. Check your internet connection and Render service."
+    );
+  }
+
+  let data = {};
+
+  try {
+    data = await response.json();
+  } catch (error) {}
+
+  if (!response.ok) {
+    if (response.status === 401 && adminToken) {
+      logout();
+      throw new Error("Your session expired. Please sign in again.");
+    }
+
+    throw new Error(data.message || "Request failed: " + response.status);
+  }
+
+  return data;
+}
+
+function showLogin(message = "") {
+  $("loginView").classList.remove("hidden");
+  $("appView").classList.add("hidden");
+  $("logoutBtn").classList.add("hidden");
+  $("loginMessage").textContent = message;
+}
+
+function showApp() {
+  $("loginView").classList.add("hidden");
+  $("appView").classList.remove("hidden");
+  $("logoutBtn").classList.remove("hidden");
+  loadData();
+}
+
+function logout() {
+  adminToken = "";
+  sessionStorage.removeItem("impact_realty_admin_token");
+  showLogin("You have been logged out.");
+}
+
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const button = $("loginBtn");
+  button.disabled = true;
+  button.textContent = "Signing in…";
+  $("loginMessage").textContent = "";
+
+  try {
+    const result = await request("/api/admin/login", {
+      method:"POST",
+      body:JSON.stringify({
+        email:$("email").value.trim(),
+        password:$("password").value
+      })
+    });
+
+    adminToken = result.token;
+    sessionStorage.setItem("impact_realty_admin_token", adminToken);
+    $("password").value = "";
+    showApp();
+
+  } catch (error) {
+    $("loginMessage").textContent = error.message;
+    $("loginMessage").style.color = "#e39b91";
+
+  } finally {
+    button.disabled = false;
+    button.textContent = "Sign in to dashboard ↗";
+  }
+});
+
+$("logoutBtn").addEventListener("click", logout);
+
+document.querySelectorAll(".nav").forEach(button => {
+  button.addEventListener("click", () => showPage(button.dataset.page));
+});
+
+function showPage(page) {
+  ["overview","properties","enquiries"].forEach(name => {
+    $(name + "Page").classList.toggle("hidden", name !== page);
+  });
+
+  document.querySelectorAll(".nav").forEach(button => {
+    button.classList.toggle("active", button.dataset.page === page);
+  });
+
+  if (page === "properties") renderProperties();
+  if (page === "enquiries") renderEnquiries();
+}
+
+async function loadData() {
+  try {
+    const [propertyData, enquiryData] = await Promise.all([
+      request("/api/properties"),
+      request("/api/enquiries")
+    ]);
+
+    properties = Array.isArray(propertyData) ? propertyData : [];
+    enquiries = Array.isArray(enquiryData) ? enquiryData : [];
+
+    renderOverview();
+    renderProperties();
+    renderEnquiries();
+
+  } catch (error) {
+    notify(error.message);
+  }
+}
+
+function renderOverview() {
+  $("totalProperties").textContent = properties.length;
+
+  $("availableProperties").textContent =
+    properties.filter(property =>
+      ["Available","Ready to Move"].includes(property.status)
+    ).length;
+
+  $("totalEnquiries").textContent = enquiries.length;
+
+  $("newEnquiries").textContent =
+    enquiries.filter(enquiry =>
+      (enquiry.status || "New") === "New"
+    ).length;
+
+  const recentEnquiries = enquiries.slice(0,5);
+
+  $("recentEnquiries").innerHTML = recentEnquiries.length
+    ? `<div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>NAME</th><th>PHONE</th><th>INTEREST</th>
+              <th>STATUS</th><th>DATE</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${recentEnquiries.map(enquiry => `
+              <tr>
+                <td><strong>${esc(enquiry.name)}</strong></td>
+                <td>${esc(enquiry.phone)}</td>
+                <td>${esc(enquiry.interest || "—")}</td>
+                <td><span class="pill">${esc(enquiry.status || "New")}</span></td>
+                <td>${dateFmt(enquiry.createdAt)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>`
+    : '<div class="empty">No enquiries received yet.</div>';
+
+  const recentProperties = properties.slice(0,5);
+
+  $("recentProperties").innerHTML = recentProperties.length
+    ? `<div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>PROPERTY</th><th>LOCATION</th>
+              <th>PRICE</th><th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${recentProperties.map(property => `
+              <tr>
+                <td>
+                  <strong>${esc(property.title)}</strong>
+                  <span class="sub">${esc(property.type)}</span>
+                </td>
+                <td>${esc(property.location)}</td>
+                <td>${esc(property.priceText || money(property.price))}</td>
+                <td><span class="pill">${esc(property.status)}</span></td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>`
+    : '<div class="empty">No properties added yet.</div>';
+}
+
+function renderProperties() {
+  const search = ($("propertySearch").value || "").toLowerCase();
+  const status = $("propertyFilter").value;
+
+  const list = properties.filter(property => {
+    const matchesSearch =
+      `${property.title} ${property.location}`.toLowerCase().includes(search);
+
+    return matchesSearch && (!status || property.status === status);
+  });
+
+  $("propertyTable").innerHTML = list.length
+    ? `<table>
+        <thead>
+          <tr>
+            <th>PROPERTY</th><th>LOCATION</th><th>PRICE</th>
+            <th>STATUS</th><th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${list.map(property => `
+            <tr>
+              <td>
+                <strong>${esc(property.title)}</strong>
+                <span class="sub">${esc(property.type)} · ${esc(property.bhk || "")}</span>
+              </td>
+              <td>${esc(property.location)}</td>
+              <td>${esc(property.priceText || money(property.price))}</td>
+              <td><span class="pill">${esc(property.status)}</span></td>
+              <td>
+                <div class="actions">
+                  <button class="mini" onclick="editProperty('${property._id}')">Edit</button>
+                  <button class="mini delete" onclick="deleteProperty('${property._id}')">Delete</button>
+                </div>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>`
+    : '<div class="empty">No matching properties found.</div>';
+}
+
+function renderEnquiries() {
+  const search = ($("enquirySearch").value || "").toLowerCase();
+  const status = $("enquiryFilter").value;
+
+  const list = enquiries.filter(enquiry => {
+    const text = `${enquiry.name} ${enquiry.phone} ${enquiry.message || ""}`.toLowerCase();
+    const matchesSearch = text.includes(search);
+    const matchesStatus = !status || (enquiry.status || "New") === status;
+    return matchesSearch && matchesStatus;
+  });
+
+  $("enquiryTable").innerHTML = list.length
+    ? `<table>
+        <thead>
+          <tr>
+            <th>CUSTOMER</th><th>CONTACT</th><th>INTEREST / MESSAGE</th>
+            <th>DATE</th><th>STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${list.map(enquiry => `
+            <tr>
+              <td>
+                <strong>${esc(enquiry.name)}</strong>
+                <span class="sub">${esc(enquiry.email || "")}</span>
+              </td>
+              <td>${esc(enquiry.phone)}</td>
+              <td>
+                ${esc(enquiry.interest || "General enquiry")}
+                <span class="sub">${esc(enquiry.message || "")}</span>
+              </td>
+              <td>${dateFmt(enquiry.createdAt)}</td>
+              <td>
+                <select class="control"
+                  onchange="updateEnquiry('${enquiry._id}',this.value)">
+                  ${["New","Contacted","Site Visit Scheduled","Closed"].map(value =>
+                    `<option ${((enquiry.status || "New") === value) ? "selected" : ""}>${value}</option>`
+                  ).join("")}
+                </select>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>`
+    : '<div class="empty">No matching enquiries found.</div>';
+}
+
+$("propertySearch").addEventListener("input", renderProperties);
+$("propertyFilter").addEventListener("change", renderProperties);
+$("enquirySearch").addEventListener("input", renderEnquiries);
+$("enquiryFilter").addEventListener("change", renderEnquiries);
+
+function openAddProperty() {
+  $("propertyForm").reset();
+  $("propertyId").value = "";
+  $("modalTitle").textContent = "Add property";
+  $("propertyMessage").textContent = "";
+  $("propertyModal").classList.add("show");
+}
+
+function closePropertyModal() {
+  $("propertyModal").classList.remove("show");
+}
+
+function editProperty(id) {
+  const property = properties.find(item => item._id === id);
+  if (!property) return;
+
+  $("propertyId").value = property._id;
+  $("pTitle").value = property.title || "";
+  $("pLocation").value = property.location || "";
+  $("pType").value = property.type || "Apartment";
+  $("pStatus").value = property.status || "Available";
+  $("pPrice").value = property.price || "";
+  $("pPriceText").value = property.priceText || "";
+  $("pBhk").value = property.bhk || "";
+  $("pArea").value = property.area || "";
+  $("pImage").value = property.image || "";
+  $("pDescription").value = property.description || "";
+  $("pFeatured").checked = Boolean(property.featured);
+
+  $("modalTitle").textContent = "Edit property";
+  $("propertyMessage").textContent = "";
+  $("propertyModal").classList.add("show");
+}
+
+$("propertyForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const id = $("propertyId").value;
+
+  const property = {
+    title:$("pTitle").value.trim(),
+    location:$("pLocation").value,
+    type:$("pType").value,
+    status:$("pStatus").value,
+    price:Number($("pPrice").value),
+    priceText:$("pPriceText").value.trim(),
+    bhk:$("pBhk").value.trim(),
+    area:$("pArea").value.trim(),
+    image:$("pImage").value.trim(),
+    description:$("pDescription").value.trim(),
+    featured:$("pFeatured").checked
+  };
+
+  const button = $("savePropertyBtn");
+  button.disabled = true;
+  button.textContent = "Saving…";
+
+  try {
+    await request(
+      id ? `/api/properties/${id}` : "/api/properties",
+      {
+        method:id ? "PUT" : "POST",
+        body:JSON.stringify(property)
+      }
+    );
+
+    closePropertyModal();
+    await loadData();
+    notify(id ? "Property updated successfully." : "Property added successfully.");
+
+  } catch (error) {
+    $("propertyMessage").textContent = error.message;
+    $("propertyMessage").style.color = "#e39b91";
+
+  } finally {
+    button.disabled = false;
+    button.textContent = "Save property";
+  }
+});
+
+async function deleteProperty(id) {
+  const property = properties.find(item => item._id === id);
+  if (!property) return;
+
+  if (!confirm(`Delete "${property.title}" permanently?`)) return;
+
+  try {
+    await request(`/api/properties/${id}`, {method:"DELETE"});
+    await loadData();
+    notify("Property deleted successfully.");
+  } catch (error) {
+    notify(error.message);
+  }
+}
+
+async function updateEnquiry(id, status) {
+  try {
+    await request(`/api/enquiries/${id}`, {
+      method:"PATCH",
+      body:JSON.stringify({status})
+    });
+
+    const enquiry = enquiries.find(item => item._id === id);
+    if (enquiry) enquiry.status = status;
+
+    renderOverview();
+    renderEnquiries();
+    notify("Enquiry status updated.");
+
+  } catch (error) {
+    notify(error.message);
+    await loadData();
+  }
+}
+
+$("propertyModal").addEventListener("click", event => {
+  if (event.target === $("propertyModal")) closePropertyModal();
+});
+
+if (adminToken) {
+  showApp();
+} else {
+  showLogin();
+}
+</script>
+</body>
+</html>
+
+
+
+
