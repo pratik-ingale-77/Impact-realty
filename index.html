@@ -183,6 +183,6 @@ function adminTab(tab) {
   const notes = {overview:'The public property listings and customer enquiries are connected. Admin sign-in and management screens are the next step.',properties:'Property create/edit/delete endpoints are available in the backend. The visual admin editor is not connected yet.',enquiries:'Customer callback requests are saved in MongoDB. The enquiry management screen is not connected yet.',content:'Website settings editor is a preview only.',roles:'Staff accounts and role permissions are not implemented yet.'};
   $('adminMain').innerHTML = '<div class="eyebrow">IMPACT REALTY ADMIN</div><h2>'+titles[tab]+'</h2><p class="adminnotice">'+notes[tab]+'</p><p class="smallprint">This section is not yet connected to live admin controls.</p>';
 }
-$('language').addEventListener('change', e => toast('Language switch preview: '+e.target.options[e.target.selectedIndex].text+'. Full translations are not connected yet.'));
+<script src="language.js"></script>
 loadProperties();
 </script></body></html>
