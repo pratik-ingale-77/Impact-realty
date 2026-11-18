@@ -1,11 +1,10 @@
 
-/* Impact Realty: English / Hindi / Marathi language switcher.
-   Add this file as language.js in the repository root. */
+/* Impact Realty - English / Hindi / Marathi language switcher */
 (() => {
   const dictionary = {
     hi: {
       "Properties":"प्रॉपर्टी","Projects":"प्रोजेक्ट","About":"हमारे बारे में","Contact":"संपर्क",
-      "Find a place":"अपनी पसंद का घर","to ":"पाने के लिए","belong.":"जहाँ अपनापन हो।",
+      "Find a place":"अपनी पसंद का घर","to":"पाने के लिए","belong.":"जहाँ अपनापन हो।",
       "BADLAPUR · AMBERNATH · MAHARASHTRA":"बदलापुर · अंबरनाथ · महाराष्ट्र",
       "Thoughtfully selected homes and commercial spaces, guided by local expertise and a commitment to you.":"स्थानीय जानकारी और आपकी जरूरतों को ध्यान में रखकर चुने गए घर और व्यावसायिक स्थान।",
       "Explore Properties ↗":"प्रॉपर्टी देखें ↗","Talk to an advisor":"हमारे सलाहकार से बात करें",
@@ -14,7 +13,7 @@
       "Flat / Apartment":"फ्लैट / अपार्टमेंट","Commercial Shop":"कमर्शियल दुकान","BUDGET":"बजट","Any budget":"कोई भी बजट",
       "Under ₹40 lakh":"₹40 लाख से कम","₹40–60 lakh":"₹40–60 लाख","Above ₹60 lakh":"₹60 लाख से अधिक",
       "BHK":"बीएचके","Any BHK":"कोई भी बीएचके","Search ↗":"खोजें ↗",
-      "CURATED FOR YOU":"आपके लिए चुनी गई प्रॉपर्टी","Featured ":"चुनिंदा ","properties":"प्रॉपर्टी",
+      "CURATED FOR YOU":"आपके लिए चुनी गई प्रॉपर्टी","Featured":"चुनिंदा","properties":"प्रॉपर्टी",
       "A considered selection for your next move.":"आपके अगले कदम के लिए चुने गए विकल्प।",
       "Loading properties from Impact Realty…":"Impact Realty की प्रॉपर्टी लोड हो रही हैं…",
       "Property listings are loaded live from the Impact Realty database.":"प्रॉपर्टी की सूची Impact Realty डेटाबेस से लाइव लोड होती है।",
@@ -56,7 +55,7 @@
       "View details ↗":"जानकारी देखें ↗","Contact our team for property details.":"प्रॉपर्टी की जानकारी के लिए हमारी टीम से संपर्क करें।",
       "No properties are listed yet. Please check back soon or contact our team.":"अभी कोई प्रॉपर्टी सूचीबद्ध नहीं है। कृपया बाद में देखें या हमारी टीम से संपर्क करें।",
       "We could not load properties right now. Please refresh in a moment or contact our team on WhatsApp.":"अभी प्रॉपर्टी लोड नहीं हो सकीं। कृपया थोड़ी देर बाद रिफ्रेश करें या WhatsApp पर संपर्क करें।",
-      "The live property service is temporarily unavailable.":"लाइव प्रॉपर्टी सेवा अस्थायी रूप से उपलब्ध नहीं है。",
+      "The live property service is temporarily unavailable.":"लाइव प्रॉपर्टी सेवा अस्थायी रूप से उपलब्ध नहीं है।",
       "Live listings from the Impact Realty database. Contact us to confirm availability and details.":"Impact Realty डेटाबेस से लाइव लिस्टिंग। उपलब्धता और जानकारी की पुष्टि के लिए संपर्क करें।",
       "Sending…":"भेजा जा रहा है…","Thank you. Your enquiry has been received by Impact Realty.":"धन्यवाद। आपकी पूछताछ Impact Realty को मिल गई है।",
       "Your enquiry was sent successfully.":"आपकी पूछताछ सफलतापूर्वक भेज दी गई।",
@@ -66,7 +65,7 @@
 
     mr: {
       "Properties":"मालमत्ता","Projects":"प्रकल्प","About":"आमच्याबद्दल","Contact":"संपर्क",
-      "Find a place":"तुमच्या हक्काचं घर","to ":"शोधण्यासाठी","belong.":"आपलेपणाचं ठिकाण.",
+      "Find a place":"तुमच्या हक्काचं घर","to":"शोधण्यासाठी","belong.":"आपलेपणाचं ठिकाण.",
       "BADLAPUR · AMBERNATH · MAHARASHTRA":"बदलापूर · अंबरनाथ · महाराष्ट्र",
       "Thoughtfully selected homes and commercial spaces, guided by local expertise and a commitment to you.":"स्थानिक माहिती आणि तुमच्या गरजा लक्षात घेऊन निवडलेली घरे व व्यावसायिक जागा.",
       "Explore Properties ↗":"मालमत्ता पाहा ↗","Talk to an advisor":"आमच्या सल्लागाराशी बोला",
@@ -75,7 +74,7 @@
       "Flat / Apartment":"फ्लॅट / अपार्टमेंट","Commercial Shop":"व्यावसायिक दुकान","BUDGET":"अंदाजपत्रक","Any budget":"कोणतेही बजेट",
       "Under ₹40 lakh":"₹४० लाखांपेक्षा कमी","₹40–60 lakh":"₹४०–६० लाख","Above ₹60 lakh":"₹६० लाखांपेक्षा जास्त",
       "BHK":"बीएचके","Any BHK":"कोणतेही बीएचके","Search ↗":"शोधा ↗",
-      "CURATED FOR YOU":"तुमच्यासाठी निवडलेले","Featured ":"निवडक ","properties":"मालमत्ता",
+      "CURATED FOR YOU":"तुमच्यासाठी निवडलेले","Featured":"निवडक","properties":"मालमत्ता",
       "A considered selection for your next move.":"तुमच्या पुढील निर्णयासाठी निवडलेले पर्याय.",
       "Loading properties from Impact Realty…":"Impact Realty मधील मालमत्ता लोड होत आहेत…",
       "Property listings are loaded live from the Impact Realty database.":"मालमत्तांची यादी Impact Realty डेटाबेसमधून थेट लोड होते.",
@@ -127,17 +126,21 @@
   };
 
   const originals = new WeakMap();
-  const attributes = new WeakMap();
+  const savedAttributes = new WeakMap();
 
   function translate(value, lang) {
-    return lang === "en" ? value : ((dictionary[lang] || {})[value] || value);
+    if (lang === "en") return value;
+    return (dictionary[lang] && dictionary[lang][value]) || value;
   }
 
   function apply() {
     const picker = document.getElementById("language");
     if (!picker) return;
 
-    const lang = picker.value || "en";
+    const lang = ["en", "hi", "mr"].includes(picker.value)
+      ? picker.value
+      : "en";
+
     document.documentElement.lang = lang;
 
     document.title = lang === "hi"
@@ -154,8 +157,10 @@
     let node;
 
     while ((node = walker.nextNode())) {
-      if (node.parentElement &&
-          node.parentElement.closest("script,style")) continue;
+      if (
+        node.parentElement &&
+        node.parentElement.closest("script, style, noscript")
+      ) continue;
 
       if (!originals.has(node)) {
         originals.set(node, node.nodeValue);
@@ -169,18 +174,20 @@
       const leading = original.match(/^\s*/)[0];
       const trailing = original.match(/\s*$/)[0];
 
-      node.nodeValue =
-        leading + translate(trimmed, lang) + trailing;
+      const translated = translate(trimmed, lang);
+      const updated = leading + translated + trailing;
+
+      if (node.nodeValue !== updated) {
+        node.nodeValue = updated;
+      }
     }
 
-    document.querySelectorAll(
-      "[placeholder],[aria-label]"
-    ).forEach(el => {
-      let saved = attributes.get(el);
+    document.querySelectorAll("[placeholder], [aria-label]").forEach(el => {
+      let saved = savedAttributes.get(el);
 
       if (!saved) {
         saved = {};
-        attributes.set(el, saved);
+        savedAttributes.set(el, saved);
       }
 
       ["placeholder", "aria-label"].forEach(attr => {
@@ -190,15 +197,12 @@
           saved[attr] = el.getAttribute(attr);
         }
 
-        el.setAttribute(
-          attr,
-          translate(saved[attr], lang)
-        );
-      });
-    });
+        const translated = translate(saved[attr], lang);
 
-    document.querySelectorAll(".property-enquire").forEach(el => {
-      el.textContent = translate("View details ↗", lang);
+        if (el.getAttribute(attr) !== translated) {
+          el.setAttribute(attr, translated);
+        }
+      });
     });
   }
 
@@ -207,7 +211,6 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     const picker = document.getElementById("language");
-
     if (!picker) return;
 
     try {
@@ -216,23 +219,33 @@
       if (["en", "hi", "mr"].includes(saved)) {
         picker.value = saved;
       }
-    } catch (_) {}
+    } catch (error) {
+      // Continue if browser storage is unavailable.
+    }
 
     picker.addEventListener("change", () => {
       try {
-        localStorage.setItem(
-          "impactRealtyLanguage",
-          picker.value
-        );
-      } catch (_) {}
+        localStorage.setItem("impactRealtyLanguage", picker.value);
+      } catch (error) {
+        // Language switching still works without browser storage.
+      }
 
       apply();
     });
 
     apply();
 
-    // Re-translate property cards and other content inserted after page load.
-    const observer = new MutationObserver(() => apply());
+    // Translate content added later, without creating an observer loop.
+    const observer = new MutationObserver((mutations) => {
+      const hasNewContent = mutations.some(mutation =>
+        Array.from(mutation.addedNodes).some(node =>
+          node.nodeType === Node.ELEMENT_NODE ||
+          node.nodeType === Node.TEXT_NODE
+        )
+      );
+
+      if (hasNewContent) apply();
+    });
 
     observer.observe(document.body, {
       childList: true,
